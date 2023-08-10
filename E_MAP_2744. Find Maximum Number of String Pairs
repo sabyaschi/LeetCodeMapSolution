@@ -1,0 +1,17 @@
+class Solution {
+    public int maximumNumberOfStringPairs(String[] words) {
+        HashSet<String> set = new HashSet<>();
+        int ans = 0;
+        for(String s : words){
+            StringBuilder sb = new StringBuilder();
+            sb.append(s);
+            String tmp = sb.reverse().toString();
+            if(set.contains(tmp)){
+                ans++;
+            }
+
+            set.add(s);
+        }
+        return ans;
+    }
+}
