@@ -1,0 +1,25 @@
+class Solution {
+    public int canBeTypedWords(String text, String brokenLetters) {
+        int count; int ans = 0;
+
+        for(String s : text.split(" ")){
+            ArrayList<Character> li = new ArrayList<>();
+            count = 0;
+            for(char ch : s.toCharArray()){
+                li.add(ch);
+            }
+
+            for(char ch : brokenLetters.toCharArray()){
+                if(li.contains(ch)){
+                    count++;
+                }                
+            }
+
+            if(count == 0)
+            {
+                ans++;
+            }
+        }
+        return ans;
+    }
+}
