@@ -1,0 +1,19 @@
+class Solution {
+    public int countBalls(int lowLimit, int highLimit) {
+        Map<Integer,Integer> mp = new HashMap<>();
+        int c = Integer.MIN_VALUE;
+        for(int i = lowLimit;i<= highLimit;i++){
+            int nums = i; int sum = 0;
+             while(nums > 0){
+            int rem = nums % 10;
+            sum += rem;
+            nums = nums/10;
+        }
+
+        mp.put(sum,mp.getOrDefault(sum,0) + 1);
+
+        c = mp.get(sum) > c ? mp.get(sum) : c;
+        }
+        return c;
+    }
+}
