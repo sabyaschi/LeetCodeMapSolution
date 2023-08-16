@@ -1,0 +1,23 @@
+class Solution {
+    public boolean canBeEqual(int[] target, int[] arr) {
+       Map<Integer , Integer> mp = new HashMap<>();
+       for(int i : target){
+           mp.put(i,mp.getOrDefault(i,0) + 1);
+       }
+
+       for(int i : arr){
+           if(mp.containsKey(i)){
+               if(mp.get(i) == 1){
+                   mp.remove(i);
+               }
+               else{
+                   mp.put(i,mp.get(i) - 1);
+               }
+           }
+           else{
+               return false;
+           }           
+       }
+       return mp.size() == 0 ? true : false;
+    }
+}
