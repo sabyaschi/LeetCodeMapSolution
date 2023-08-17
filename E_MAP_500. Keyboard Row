@@ -1,0 +1,49 @@
+class Solution {
+    public String[] findWords(String[] words) {
+        String r1 = "QWERTYUIOPqwertyuiop";
+        String r2 = "ASDFGHJKLasdfghjkl";
+        String r3 = "ZXCVBNMzxcvbnm";
+
+        HashSet<Character> row1 = new HashSet<>();
+        HashSet<Character> row2 = new HashSet<>();
+        HashSet<Character> row3 = new HashSet<>();
+
+        for(int i = 0;i<r1.length();i++){
+            row1.add(r1.charAt(i));
+        }
+        for(int i = 0;i<r2.length();i++){
+            row2.add(r2.charAt(i));
+        }
+        for(int i = 0;i<r3.length();i++){
+            row3.add(r3.charAt(i));
+        }
+
+        ArrayList<String> li = new ArrayList<>();
+
+        for(int i = 0;i < words.length;i++){
+            String s = words[i];
+            int r1tmp = 0;
+            int r2tmp = 0;
+            int r3tmp = 0;       
+            for(int j = 0;j<s.length();j++){
+                if(row1.contains(s.charAt(j))){
+                    r1tmp++;
+                }
+                else if(row2.contains(s.charAt(j))){
+                    r2tmp++;
+                }
+                else if(row3.contains(s.charAt(j))){
+                    r3tmp++;
+                }
+            }
+            if(r1tmp == s.length() || r2tmp == s.length() || r3tmp == s.length()){
+                li.add(s);
+            }
+        }
+        String ans[] = new String[li.size()];
+        for(int i=0;i<li.size();i++){
+            ans[i] = li.get(i);
+        }
+        return ans;
+    }
+}
