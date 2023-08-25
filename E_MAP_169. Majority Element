@@ -1,0 +1,16 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        HashMap<Integer,Integer> mp = new HashMap<>();
+        for(int i : nums){
+            mp.put(i,mp.getOrDefault(i,0) + 1);
+        }
+        int max = Integer.MIN_VALUE;
+
+        for(int i : nums){
+            if(mp.get(i) > nums.length/2){
+                max = Math.max(max,i);
+            }
+        }
+        return max;
+    }
+}
