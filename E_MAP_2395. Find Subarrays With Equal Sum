@@ -1,15 +1,30 @@
 class Solution {
     public boolean findSubarrays(int[] nums) {
-        boolean sts = false;
+//bootforce solution
+        // boolean sts = false;
 
-        for(int i = 0;i<nums.length - 2;i++){
-            int c_sum = nums[i] + nums[i+1];
-            for(int j = i+1;j<nums.length - 1;j++){
-                if(c_sum == nums[j] + nums[j+1]){
-                    return true;
-                }
+        // for(int i = 0;i<nums.length - 2;i++){
+        //     int c_sum = nums[i] + nums[i+1];
+        //     for(int j = i+1;j<nums.length - 1;j++){
+        //         if(c_sum == nums[j] + nums[j+1]){
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return sts;
+//Set Solution
+
+        if(nums.length < 2){
+            return false;
+        }
+
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int i = 0;i<nums.length-1;i++){
+            if(!set.add(nums[i] + nums[i+1])){
+                return true;
             }
         }
-        return sts;
+        return false;
     }
 }
