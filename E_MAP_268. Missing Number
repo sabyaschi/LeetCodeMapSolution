@@ -1,0 +1,42 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+        // Normal bootforce
+        // Arrays.sort(nums);
+        // int s_index = nums[0];
+        // int e_index = nums[nums.length - 1];
+        // if(nums.length == 1){
+        //     if(nums[0] > 0){
+        //         return nums[0] - 1;
+        //     }
+        //     else {
+        //         return 1 + nums[0];
+        //     }
+        // }
+        // else if(s_index != 0){
+        //     return 0;
+        // }
+        // else {
+        //     for(int i = 0;i<nums.length-1;i++){
+        //         if((nums[i+1] - nums[i]) > 1 ){
+        //             return nums[i] + 1;
+        //         }
+        //     }
+        // }
+        // int ans = e_index + 1;
+        // return ans;
+
+        // USING HASHMAP
+
+        HashMap<Integer,Integer> mp = new HashMap<>();
+        for(int i : nums){
+            mp.put(i,i);
+        }
+
+        for(int i = 0;i<nums.length;i++){
+            if(!mp.containsKey(i)){
+               return i; 
+            }
+        }
+        return nums.length;        
+    }
+}
