@@ -1,0 +1,18 @@
+class Solution {
+    public boolean checkAlmostEquivalent(String word1, String word2) {
+        HashMap<Character,Integer> mp1 = new HashMap<>();
+        int i = 0;
+        for(char c : word1.toCharArray()){
+            mp1.put(c,mp1.getOrDefault(c,0) + 1);
+            mp1.put(word2.charAt(i),mp1.getOrDefault(word2.charAt(i),0)-1);
+            i++;
+        }
+
+        for(Map.Entry<Character,Integer> mp : mp1.entrySet()){
+            if(mp.getValue() > 3 || mp.getValue() < -3){
+                return false;
+            }
+        }
+        return true;
+    }
+}
