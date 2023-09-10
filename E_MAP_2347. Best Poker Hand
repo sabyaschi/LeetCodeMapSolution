@@ -1,0 +1,35 @@
+class Solution {
+    public String bestHand(int[] ranks, char[] suits) {
+        Map<Integer,Integer> mp_int = new HashMap<>();
+        Map<Character,Integer> mp_char = new HashMap<>();
+
+        for(int i : ranks){
+            mp_int.put(i,mp_int.getOrDefault(i,0) + 1);
+        }
+        for(char c : suits){
+            mp_char.put(c,mp_char.getOrDefault(c,0) + 1);
+        }
+        for(char c  : suits){
+            if(mp_char.containsKey(c)){
+                if(mp_char.get(c) == suits.length){
+                    return "Flush";
+                }
+            }
+        }
+        for(int i : ranks){
+            if(mp_int.containsKey(i)){
+                if(mp_int.get(i) >= 3 && mp_int.get(i) < 5 ){
+                    return "Three of a Kind";
+                }
+            }
+        }
+        for(int i : ranks){
+            if(mp_int.containsKey(i)){
+                if(mp_int.get(i) == 2){
+                    return "Pair";
+                }
+            }
+        }
+        return "High Card";
+    }
+}
