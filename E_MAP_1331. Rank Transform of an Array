@@ -1,0 +1,24 @@
+class Solution {
+    public int[] arrayRankTransform(int[] arr) {
+        if(arr.length == 0){
+            return new int[0];
+        }
+        int ans[] = arr.clone();
+        Map<Integer,Integer> mp = new HashMap<>();
+        Arrays.sort(arr);
+        int prev = arr[0];
+        int r = 1;
+        for(int i : arr){
+            if(i != prev){
+                r++;
+            }
+            mp.putIfAbsent(i,r);
+            prev = i;
+        }
+
+        for(int i = 0;i<ans.length;i++){
+            ans[i] = mp.get(ans[i]);
+        }
+        return ans;
+    }
+}
