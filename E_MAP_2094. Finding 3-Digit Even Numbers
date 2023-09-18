@@ -1,0 +1,31 @@
+class Solution {
+    public int[] findEvenNumbers(int[] digits) {
+        Map<Integer,Integer> mp = new HashMap<>();
+        List<Integer> ls = new ArrayList<>();
+
+        for(int i : digits){
+            mp.put(i,mp.getOrDefault(i,0)+1);
+        }
+
+        for(int i = 100;i < 999;i = i  + 2){        
+        String numStr = String.valueOf(i);
+        int first = Character.getNumericValue(numStr.charAt(0));
+        int second = Character.getNumericValue(numStr.charAt(1));
+        int third = Character.getNumericValue(numStr.charAt(2));
+        Map<Integer,Integer> m = new HashMap<>();
+        m.put(first,m.getOrDefault(first,0)+1);
+        m.put(second ,m.getOrDefault(second ,0)+1);
+        m.put(third ,m.getOrDefault(third ,0)+1);
+        boolean sts = true;
+        for(int key : m.keySet()){
+            if(!(mp.containsKey(key)) || mp.get(key) < m.get(key)){
+                sts = false;
+                }
+            }
+            if(sts){
+                ls.add(i);
+            }
+        }
+        return ls.stream().mapToInt(i -> i).toArray();
+    }
+}
