@@ -1,0 +1,28 @@
+class Solution {
+    public String oddString(String[] words) {
+        Map<List<Integer>,Integer> mp = new HashMap<>();
+        List<Integer> tmp_ans = new ArrayList<>();
+        for(int i = 0;i<words.length;i++){
+            ArrayList<Integer> ls = new ArrayList<>();
+            for(int j = 0;j<words[i].length()-1;j++){
+                ls.add(words[i].charAt(j+1) - words[i].charAt(j));
+            }
+            mp.put(ls,mp.getOrDefault(ls,0)+1);
+        }
+        for(Map.Entry<List<Integer>,Integer> m : mp.entrySet()){
+            if(m.getValue() == 1){
+                tmp_ans = m.getKey();
+            }
+        }
+
+        for(int i = 0;i<words.length;i++){
+            ArrayList<Integer> ls = new ArrayList<>();
+            for(int j = 0;j<words[i].length()-1;j++){
+                ls.add(words[i].charAt(j+1) - words[i].charAt(j));
+            }
+            if(ls.equals(tmp_ans)) return words[i];
+        }
+        return "";
+
+    }
+}
