@@ -1,0 +1,27 @@
+class Solution {
+    public List<List<Integer>> findMatrix(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Map<Integer ,Integer> mp = new HashMap<>();
+        Set<Integer> set = new HashSet<>();
+        for(int i : nums){
+            mp.put(i,mp.getOrDefault(i,0)+1);
+            set.add(i);
+        }
+        while(!mp.isEmpty()){
+            List<Integer> tmp = new ArrayList<>();          
+            for(int i : set){
+                if(mp.containsKey(i)){
+                    tmp.add(i);
+                    if(mp.get(i)==1){
+                        mp.remove(i);
+                    }
+                    else{
+                        mp.put(i,mp.get(i)- 1);
+                    }
+                }
+            }
+            ans.add(tmp);
+        }
+        return ans;
+    }
+}
