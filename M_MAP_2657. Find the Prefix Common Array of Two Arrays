@@ -1,0 +1,17 @@
+class Solution {
+    public int[] findThePrefixCommonArray(int[] A, int[] B) {
+        int ans[] = new int[A.length];
+        Map<Integer,Integer> mp1 = new HashMap<>();
+        Map<Integer,Integer> mp2 = new HashMap<>();
+        for(int i = 0;i < A.length;i++){
+            mp1.put(A[i],mp1.getOrDefault(A[i],0)+1);
+            mp2.put(B[i],mp2.getOrDefault(B[i],0)+1);
+            for(int j : mp1.keySet()){
+                if(mp2.containsKey(j)){
+                    ans[i] += Math.min(mp1.get(j),mp2.get(j));
+                }
+            }
+        }
+        return ans;
+    }
+}
