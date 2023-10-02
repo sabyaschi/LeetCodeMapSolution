@@ -1,0 +1,22 @@
+class Solution {
+    public int reverseNum(int a){
+        int s = 0;
+        while(a>0){
+            int r = a%10;
+            s = s*10 + r;
+            a = a / 10;
+        }
+        return s;
+    }
+    public int countDistinctIntegers(int[] nums) {
+        Map<Integer,Integer> mp = new HashMap<>();
+        for(int i : nums){
+            mp.put(i,mp.getOrDefault(i,0)+1);
+        }
+        for(int i : nums){
+            int rev = reverseNum(i);
+            mp.put(rev,mp.getOrDefault(rev,0)+1);
+        }
+        return mp.size();
+    }
+}
